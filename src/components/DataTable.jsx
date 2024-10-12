@@ -2,15 +2,14 @@ import EditItemModal from "./EditItemModal";
 import { useRef, useState, useContext } from "react";
 import { AccessContext } from "./AccessProvider.jsx";
 
-const DataTable = ({ productList }) => {
+const DataTable = ({ productList, onDeleteItem }) => {
     const [selectedProduct, setSelectedProduct] = useState({});
     const modalRef = useRef();
+    const accessContext = useContext(AccessContext);
     const handleEdit = (product) => {
         setSelectedProduct(product);
         modalRef.current.open();
     }
-
-    const accessContext = useContext(AccessContext);
 
     return (
         <div className="data-table-container">
@@ -38,7 +37,7 @@ const DataTable = ({ productList }) => {
                             {accessContext.userAccess && <td>
                                 <img src="../../assets/edit.png" alt="open" className="action-btn" onClick={() => { handleEdit(product) }} />
                                 <img src="../../assets/visibility.png" alt="open" className="action-btn" onClick={() => { }} />
-                                <img src="../../assets/delete.png" alt="open" className="action-btn" onClick={() => { }} />
+                                <img src="../../assets/delete.png" alt="open" className="action-btn" onClick={() => { if (confirm("Are you sure you want to delete this item?")) onDeleteItem(index) }} />
                             </td>}
                             {!accessContext.userAccess && <td>
                                 <img src="../../assets/disableedit.png" alt="open" className="action-btn" />
