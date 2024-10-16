@@ -26,7 +26,12 @@ const DataTable = ({ productList, onDeleteItem }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    <EditItemModal ref={modalRef} itemTitle={selectedProduct.name} category={selectedProduct.category} price={selectedProduct.price} quantity={selectedProduct.quantity} value={selectedProduct.value} />
+                    <EditItemModal ref={modalRef}
+                        itemTitle={selectedProduct.name}
+                        category={selectedProduct.category}
+                        price={selectedProduct.price}
+                        quantity={selectedProduct.quantity}
+                        value={selectedProduct.value} />
                     {productList.map((product, index) => (
                         <tr key={index}>
                             <td>{product.name}</td>
